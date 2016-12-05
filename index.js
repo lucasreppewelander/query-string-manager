@@ -17,9 +17,17 @@ const remove = (_url, _parameter) => {
 
         _url = urlparts[0]+'?'+pars.join('&');
         return _url;
-    } else {
-        return _url;
     }
+    return _url;
+}
+
+const clear = (_url) => {
+    var urlparts = _url.split('?');
+    if (urlparts.length >= 2) {
+        return urlparts[0];
+    }
+
+    return _url;
 }
 
 // _paramter and _value should be array
@@ -68,5 +76,6 @@ const _add = (url, param, gotQueryStrings) => {
 
 module.exports = {
     remove,
-    add
+    add,
+    clear
 };

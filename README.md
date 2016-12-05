@@ -14,15 +14,22 @@ array is an array of objects with `{query: 'query', value: 'value'}`
 
 ### Add
 ```javascript
-var qsm = require('query-string-manager');
+var qsm = require('qsm');
 var newurl = qsm.add('http://mywebsite.com', [{ query: 'userId', value: 1337 }]);
 
 // newurl outputs: http://mywebsite.com?userId=1337
 ```
 ### Remove
 ```javascript
-var qsm = require('query-string-manager');
+var qsm = require('qsm');
 var newurl = qsm.remove('http://mywebsite.com?userId=1337&sort=type', 'userId');
 
 // newurl outputs: http://mywebsite.com?sort=type
+```
+### Clear
+```javascript
+var qsm = require('qsm');
+var newurl = qsm.clear('http://mywebsite.com?userId=1337&sort=type');
+
+// newurl outputs: http://mywebsite.com
 ```

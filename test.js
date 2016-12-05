@@ -27,3 +27,7 @@ console.log();
 
 var changedUrl = qsr.remove(secondNewUrl, 'user');
 console.log('changedUrl', changedUrl);
+
+
+var clearUrl = qsr.clear('http://www.lrw.se');
+console.log('clearUrl', clearUrl);
