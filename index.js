@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = (_url, _parameter) => {
-    var urlparts= _url.split('?');   
+const remove = (_url, _parameter) => {
+    var urlparts= _url.split('?');
     if (urlparts.length>=2) {
 
         var prefix= encodeURIComponent(_parameter)+'=';
@@ -21,3 +21,52 @@ module.exports = (_url, _parameter) => {
         return _url;
     }
 }
+
+// _paramter and _value should be array
+const add = (_url, _params) => {
+    var retUrl;
+    var urlparts= _url.split('?');
+    if (urlparts.length>=2) {
+        // ? already exists use & to append
+        retUrl = _url;
+        for (var i = 0; i < _params.length; i++) {
+            retUrl += _add(_url, _params[i], true);
+        }
+    } else {
+        // ? does not exists, add ? to first and then no more.
+        retUrl = _url;
+        for (var i = 0; i < _params.length; i++) {
+            if (i === 0) {
+                retUrl += _add(_url, _params[i], false);
+            } else {
+                retUrl += _add(_url, _params[i], true);
+            }
+        }
+    }
+
+    // var urlparts = _url.split('?');
+    // if (urlparts.length >= 2) {
+
+    // } else {
+    //     // query string doesnt exist, add it and return the new url.
+    // }
+
+    return retUrl;
+}
+
+const _add = (url, param, gotQueryStrings) => {
+    console.log(param.query, param.value);
+    var ret = '';
+    if (!gotQueryStrings) {
+        ret += '?' + param.query + '=' + param.value;
+    } else {
+        ret += '&' + param.query + '=' + param.value;
+    }
+
+    return ret;
+}
+
+module.exports = {
+    remove,
+    add
+};
