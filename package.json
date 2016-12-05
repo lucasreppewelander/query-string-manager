@@ -1,0 +1,21 @@
+{
+  "name": "query-string-remover",
+  "version": "1.0.0",
+  "description": "a simple tool that allows you to remove any querystring from the url",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "querystring",
+    "cleaner",
+    "remover",
+    "query",
+    "string"
+  ],
+  "author": "Lucas Reppe Welander",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.2"
+  }
+}
