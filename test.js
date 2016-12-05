@@ -25,8 +25,14 @@ console.log();
 console.log('------------');
 console.log();
 
-var changedUrl = qsr.remove(secondNewUrl, 'user');
-console.log('changedUrl', changedUrl);
+var thirdNewUrl = qsr.replace(secondNewUrl, [{ query: 'lucas', value: '1337' }]);
+console.log('thirdNewUrl should only contain ?lucas=1337', thirdNewUrl);
+console.log();
+console.log('------------');
+console.log();
+
+// var changedUrl = qsr.remove(secondNewUrl, 'user');
+// console.log('changedUrl', changedUrl);
 
 
 var clearUrl = qsr.clear('http://www.lrw.se');
