@@ -51,3 +51,13 @@ var newurl = qsm.replace('http://mywebsite.com?userId=1337&sort=type', [{ query:
 
 // newurl outputs: http://mywebsite.com?hasObject=true
 ```
+
+### Exist
+Checks if the current url has the querystring.
+__returns boolean__
+```javascript
+var qsm = require('qsm');
+var exists = qsm.exist('http://mywebsite.com?userId=1337&sort=type', 'userId');
+
+// exists returns true
+```

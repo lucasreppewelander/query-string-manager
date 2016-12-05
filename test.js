@@ -31,6 +31,10 @@ console.log();
 console.log('------------');
 console.log();
 
+
+var doesitexist = qsr.exist(thirdNewUrl, 'lucas');
+console.log('doesitexist', doesitexist);
+console.log();
 // var changedUrl = qsr.remove(secondNewUrl, 'user');
 // console.log('changedUrl', changedUrl);
 
