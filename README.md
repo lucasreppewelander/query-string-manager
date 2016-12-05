@@ -3,7 +3,7 @@ Query String Manager
 > A simple tool that allows you to add and remove any querystring from the url
 
 ## Install
-`npm install --save query-string-manager`
+`npm install --save qsm`
 
 ## Usage
 
@@ -11,6 +11,10 @@ Query String Manager
 array is an array of objects with `{query: 'query', value: 'value'}`
 
 `qsm.remove(string, string)`
+
+`qsm.clear(string);`
+
+---
 
 ### Add
 ```javascript
