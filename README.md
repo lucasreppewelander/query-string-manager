@@ -11,5 +11,5 @@ Query String Manager
 var qsm = require('query-string-manager');
 var newurl = qsm.add('http://mywebsite.com', [{ query: 'userId', value: 1337 }]);
 
-newurl === http://mywebsite.com?userId=1337
+// newurl outputs: http://mywebsite.com?userId=1337
 ```
