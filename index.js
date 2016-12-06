@@ -94,7 +94,6 @@ const add = (_url, _params) => {
 }
 
 const _add = (url, param, gotQueryStrings) => {
-    console.log(param.query, param.value);
     var ret = '';
     if (!gotQueryStrings) {
         ret += '?' + param.query + '=' + param.value;
