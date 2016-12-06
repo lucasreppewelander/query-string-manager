@@ -61,3 +61,14 @@ var exists = qsm.exist('http://mywebsite.com?userId=1337&sort=type', 'userId');
 
 // exists returns true
 ```
+
+### Get
+Gets the value by key from the url
+__returns either string or null__
+```javascript
+var qsm = require('qsm');
+var exists = qsm.get('http://mywebsite.com?userId=1336,1337,1338&sort=type', 'userId');
+
+// exists returns: 1336,1337,1338
+// or if it doesnt exist: null
+```

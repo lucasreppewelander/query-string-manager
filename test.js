@@ -3,22 +3,29 @@
 var qsr = require('./index');
 
 var array = [
-    { query: 'user', value: 123 },
+    { query: 'users', value: [1, 34, 566, 34, 232] },
     { query: 'orderStages', value: 1 },
     { query: 'sort', value: true },
 ];
 
-var newUrl = qsr.add('http://www.lrw.se', array);
+let URL = 'http://www.lrw.se';
+
+var newUrl = qsr.add(URL, array);
 console.log();
 console.log('------------');
 console.log();
 
-console.log('#######');
 console.log('newUrl', newUrl);
 
 console.log();
 console.log('------------');
 console.log();
+
+var getValue = qsr.get(newUrl, 'users');
+console.log(getValue);
+
+
+/*
 var secondNewUrl = qsr.add(newUrl, [{ query: 'added', value: '2016-12-05' }]);
 console.log('secondNewUrl', secondNewUrl);
 console.log();
@@ -41,3 +48,5 @@ console.log();
 
 var clearUrl = qsr.clear('http://www.lrw.se');
 console.log('clearUrl', clearUrl);
+
+*/

@@ -35,6 +35,27 @@ const clear = (_url) => {
     return _url;
 }
 
+const get = (url, _parameter) => {
+    var urlparts= url.split('?');
+    if (urlparts.length>=2) {
+
+        var prefix= encodeURIComponent(_parameter)+'=';
+        var pars= urlparts[1].split(/[&;]/g);
+        var ret = null;
+        //reverse iteration as may be destructive
+        for (var i= pars.length; i-- > 0;) {    
+            //idiom for string.startsWith
+            if (pars[i].lastIndexOf(prefix, 0) !== -1) {  
+                ret = pars[i].split('=')[1];
+            }
+        }
+
+        // _url = urlparts[0]+'?'+pars.join('&');
+        return ret;
+    }
+    return null;
+}
+
 // _paramter and _value should be array
 const add = (_url, _params) => {
     var retUrl;
@@ -109,5 +130,6 @@ module.exports = {
     add,
     clear,
     replace,
-    exist
+    exist,
+    get
 };
