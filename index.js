@@ -26,6 +26,11 @@ const replace = (_url, _parameter) => {
     return add(url, _parameter);
 }
 
+const replaceSpecific = (url, parameter, replacer) => {
+    var url = remove(url, replacer);
+    return add(url, parameter);
+}
+
 const clear = (_url) => {
     var urlparts = _url.split('?');
     if (urlparts.length >= 2) {
@@ -131,5 +136,6 @@ module.exports = {
     clear,
     replace,
     exist,
-    get
+    get,
+    replaceSpecific
 };

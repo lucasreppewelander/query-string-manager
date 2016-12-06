@@ -3,7 +3,7 @@
 var qsr = require('./index');
 
 var array = [
-    { query: 'users', value: [1, 34, 566, 34, 232] },
+    { query: 'users', value: [1, 34] },
     { query: 'orderStages', value: 1 },
     { query: 'sort', value: true },
 ];
@@ -21,7 +21,13 @@ console.log();
 console.log('------------');
 console.log();
 
-var getValue = qsr.get(newUrl, 'users');
+var _newUrl = qsr.replaceSpecific(newUrl, [{ query: 'users', value: [1, 34, 566, 34, 232] }], 'users');
+console.log('qsr.replaceSpecific', _newUrl);
+
+console.log();
+console.log();
+
+var getValue = qsr.get(_newUrl, 'users');
 console.log(getValue);
 
 
