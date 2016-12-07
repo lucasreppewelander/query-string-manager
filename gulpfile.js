@@ -10,7 +10,7 @@ gulp.task('build', (done) => {
         babel({ presets: ['es2015'] }),
         uglify(),
         gulp.dest('build'),
-        rename('qms.js'),
+        rename('qsm.js'),
         gulp.dest('./')
     ], done);
 });
