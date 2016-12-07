@@ -15,9 +15,15 @@ describe('Add methods', () => {
         done();
     });
 
-    it('Add query string to URL with query stringg', (done) => {
+    it('Add query string to URL with query string', (done) => {
         const url = qsm.add(test.case3, [{ query: 'userId', value: '1337' }]);
         assert.equal(test.case2, url);
+        done();
+    });
+
+    it('Should add a querystring with comma separated values', (done) => {
+        const url = qsm.add(test.clean, [{ query: 'userId', value: ['1337', '666', '11'] }]);
+        assert.equal('www.url.com?userId=1337,666,11', url);
         done();
     });
 });
