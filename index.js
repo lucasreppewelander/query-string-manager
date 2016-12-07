@@ -15,7 +15,12 @@ const remove = (_url, _parameter) => {
             }
         }
 
-        _url = urlparts[0]+'?'+pars.join('&');
+        if (pars.length > 0) {
+            _url = urlparts[0]+'?'+pars.join('&');
+        } else {
+            _url = urlparts[0];
+        }
+        
         return _url;
     }
     return _url;
@@ -28,7 +33,8 @@ const replace = (_url, _parameter) => {
 
 const replaceSpecific = (url, parameter, replacer) => {
     var url = remove(url, replacer);
-    return add(url, parameter);
+    var _url = add(url, parameter);
+    return _url;
 }
 
 const clear = (_url) => {

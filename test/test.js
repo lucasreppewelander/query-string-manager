@@ -34,6 +34,18 @@ describe('Remove / Replace methods', () => {
         assert.equal(test.clean, url);
         done();
     });
+
+    it('Should replace specific query when that is the only query present', (done) => {
+        const url = qms.replaceSpecific(test.case1, [{ query: 'userId', value: '08' }], 'userId');
+        assert.equal('www.url.com?userId=08', url);
+        done();
+    });
+
+    it('Should replace specific query when there are several querystrings', (done) => {
+        const url = qms.replaceSpecific(test.case2, [{ query: 'userId', value: '08' }], 'userId');
+        assert.equal('www.url.com?gender=female&userId=08', url);
+        done();
+    });
 });
 
 describe('Get / Exist methods', () => {
