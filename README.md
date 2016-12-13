@@ -72,3 +72,17 @@ var exists = qsm.get('http://mywebsite.com?userId=1336,1337,1338&sort=type', 'us
 // exists returns: 1336,1337,1338
 // or if it doesnt exist: null
 ```
+
+### Objectify
+Transforms the querystring to a javascript object
+__returns object__
+```javascript
+var qsm = require('qsm');
+var queryObject = qsm.get('http://mywebsite.com?userId=1336,1337,1338&sort=type');
+
+// queryObject returns: 
+// {
+//  userId: [1336,1337,1339],
+//  sort: "type"   
+// }
+```

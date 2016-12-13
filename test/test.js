@@ -79,3 +79,43 @@ describe('Get / Exist & Extract methods', () => {
     });
 });
 
+describe('Objectify method',() => {
+    it('Check parsed object array', (done) => {
+        const url = 'http://www.url.com/?a=1,2,3,4';
+        const ret = qsm.objectify(url);
+        const obj = {a: [1,2,3,4]}
+        assert.deepEqual(ret,obj);
+        done();
+    });
+
+    it('Check parsed object booleans', (done) => {
+        const url = 'http://www.url.com/?a=true&b=false';
+        const ret = qsm.objectify(url);
+        const obj = {a:true, b:false};
+        assert.deepEqual(ret,obj);
+        done();
+    });
+
+    it('Check parsed object numbers', (done) => {
+        const url = 'http://www.url.com/?a=1.337&b=1337';
+        const ret = qsm.objectify(url);
+        const obj = {a:1.337, b:1337};
+        assert.deepEqual(ret,obj);
+        done();
+    });
+
+    it('Check parsed object mixed', (done) => {
+        const url = 'http://www.url.com/?a=1.337,1337,true,leet&b=false';
+        const ret = qsm.objectify(url);
+        const obj = {a: [1.337,1337,true,'leet'],b:false};
+        assert.deepEqual(ret,obj);
+        done();
+    });
+
+    it('Check parsed object empty querystring', (done) => {
+        const url = 'http://www.url.com/';
+        const ret = qsm.objectify(url);
+        assert.deepEqual(ret, {})
+        done();
+    });
+});
