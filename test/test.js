@@ -54,7 +54,7 @@ describe('Remove / Replace methods', () => {
     });
 });
 
-describe('Get / Exist methods', () => {
+describe('Get / Exist & Extract methods', () => {
     it('Check if query string exists', (done) => {
         const exists = qsm.exist(test.case2, 'gender');
         assert.equal(exists, true);
@@ -65,6 +65,17 @@ describe('Get / Exist methods', () => {
         const url = qsm.get(test.case2, 'userId');
         assert.equal(url, '1337');
         done();
+    });
+
+    it('Extract [REGULAR]', (done) => {
+        const url = 'www.url.com?userId=80&pattern=regular&parent=34&project=123,345,567';
+        const ret = qsm.extract(url);
+        console.log(ret);
+        // assert.equal
+    });
+
+    it('Extract [PLAIN]', (done) => {
+
     });
 });
 

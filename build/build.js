@@ -62,6 +62,48 @@ var exist = function exist(url, param) {
 
     return false;
 };
+var extract = function extract(url, type) {
+    var urlparts = url.split('?');
+    if (urlparts.length >= 2) {
+
+        var ret = [];
+        var pars = urlparts[1].split(/[&;]/g);
+        for (var i = 0; i < pars.length; i++) {
+            var value = pars[i].split('=')[1];
+
+            if (pars[i].split('=')[1].includes(',')) {
+                var subarr = [];
+                var subarray = pars[i].split('=')[1].split(',');
+                for (var y = 0; y < subarray.length; y++) {
+                    console.log(y, subarray[y], parseInt(subarray[y]));
+                    subarr.push(parseInt(subarray[y]) ? parseInt(subarray[y]) : subarray[y]);
+                }
+
+                value = subarr;
+            }
+
+            if (type === 'plain') {
+                ret.push(parseInt(value) ? parseInt(value) : value);
+            } else {
+                if (!Array.isArray(value)) {
+                    ret.push({
+                        query: pars[i].split('=')[0],
+                        value: parseInt(value) ? parseInt(value) : value
+                    });
+                } else {
+                    ret.push({
+                        query: pars[i].split('=')[0],
+                        value: value
+                    });
+                }
+            }
+        }
+
+        return ret;
+    }
+
+    return null;
+};
 var get = function get(url, _parameter) {
     var urlparts = url.split('?');
     if (urlparts.length >= 2) {
@@ -115,5 +157,6 @@ module.exports = {
     replace: replace,
     replaceSpecific: replaceSpecific,
     get: get,
-    exist: exist
+    exist: exist,
+    extract: extract
 };
