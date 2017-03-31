@@ -2,6 +2,8 @@ Query String Manager
 ======
 > A simple tool that allows you to add and remove any querystring from the url
 
+[![Build Status](https://travis-ci.org/lucasreppewelander/query-string-manager.svg?branch=master)](https://travis-ci.org/lucasreppewelander/query-string-manager)
+
 ## Install
 `npm install --save qsm`
 
