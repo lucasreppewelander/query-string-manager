@@ -20,13 +20,13 @@
 
     <section class="main-content">
       
-<h1><a id="user-content-query-string-manager-" class="anchor" href="#query-string-manager-" aria-hidden="true">rgb(46, 204, 113)</a>Query String Manager <a href="https://travis-ci.org/lucasreppewelander/query-string-manager"><img src="https://camo.githubusercontent.com/0681889f1bf394a49fec896b35af0607d92eabcc/68747470733a2f2f7472617669732d63692e6f72672f6c75636173726570706577656c616e6465722f71756572792d737472696e672d6d616e616765722e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/lucasreppewelander/query-string-manager.svg?branch=master" style="max-width:100%;"></a></h1>
+<h1><a id="user-content-query-string-manager-" class="anchor" href="#query-string-manager-" aria-hidden="true"></a>Query String Manager <a href="https://travis-ci.org/lucasreppewelander/query-string-manager"><img src="https://camo.githubusercontent.com/0681889f1bf394a49fec896b35af0607d92eabcc/68747470733a2f2f7472617669732d63692e6f72672f6c75636173726570706577656c616e6465722f71756572792d737472696e672d6d616e616765722e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/lucasreppewelander/query-string-manager.svg?branch=master" style="max-width:100%;"></a></h1>
 <blockquote>
 <p>A simple tool that allows you to add and remove any querystring from the url</p>
 </blockquote>
-<h2><a id="user-content-install" class="anchor" href="#install" aria-hidden="true">rgb(46, 204, 113)</a>Install</h2>
+<h2><a id="user-content-install" class="anchor" href="#install" aria-hidden="true"></a>Install</h2>
 <p><code>npm install --save qsm</code></p>
-<h2><a id="user-content-usage" class="anchor" href="#usage" aria-hidden="true">rgb(46, 204, 113)</a>Usage</h2>
+<h2><a id="user-content-usage" class="anchor" href="#usage" aria-hidden="true"></a>Usage</h2>
 <p><code>qsm.add(string, array);</code></p>
 <p><code>qsm.remove(string, string)</code></p>
 <p><code>qsm.clear(string);</code></p>
@@ -35,38 +35,38 @@
 <p><code>qsm.get(string, string);</code></p>
 <p><code>qsm.objectify(string);</code></p>
 <hr>
-<h3><a id="user-content-add" class="anchor" href="#add" aria-hidden="true">rgb(46, 204, 113)</a>Add</h3>
+<h3><a id="user-content-add" class="anchor" href="#add" aria-hidden="true"></a>Add</h3>
 <p>Appends querystring to the url.</p>
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> qsm <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>qsm<span class="pl-pds">'</span></span>);
 <span class="pl-k">var</span> newurl <span class="pl-k">=</span> <span class="pl-smi">qsm</span>.<span class="pl-c1">add</span>(<span class="pl-s"><span class="pl-pds">'</span>http://mywebsite.com<span class="pl-pds">'</span></span>, [{ query<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>userId<span class="pl-pds">'</span></span>, value<span class="pl-k">:</span> <span class="pl-c1">1337</span> }]);
 
 <span class="pl-c"><span class="pl-c">//</span> newurl outputs: http://mywebsite.com?userId=1337</span></pre></div>
-<h3><a id="user-content-remove" class="anchor" href="#remove" aria-hidden="true">rgb(46, 204, 113)</a>Remove</h3>
+<h3><a id="user-content-remove" class="anchor" href="#remove" aria-hidden="true"></a>Remove</h3>
 <p>Removes any querystring by key</p>
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> qsm <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>qsm<span class="pl-pds">'</span></span>);
 <span class="pl-k">var</span> newurl <span class="pl-k">=</span> <span class="pl-smi">qsm</span>.<span class="pl-c1">remove</span>(<span class="pl-s"><span class="pl-pds">'</span>http://mywebsite.com?userId=1337&amp;sort=type<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>userId<span class="pl-pds">'</span></span>);
 
 <span class="pl-c"><span class="pl-c">//</span> newurl outputs: http://mywebsite.com?sort=type</span></pre></div>
-<h3><a id="user-content-clear" class="anchor" href="#clear" aria-hidden="true">rgb(46, 204, 113)</a>Clear</h3>
+<h3><a id="user-content-clear" class="anchor" href="#clear" aria-hidden="true"></a>Clear</h3>
 <p>Clears all querystrings from the url</p>
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> qsm <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>qsm<span class="pl-pds">'</span></span>);
 <span class="pl-k">var</span> newurl <span class="pl-k">=</span> <span class="pl-smi">qsm</span>.<span class="pl-c1">clear</span>(<span class="pl-s"><span class="pl-pds">'</span>http://mywebsite.com?userId=1337&amp;sort=type<span class="pl-pds">'</span></span>);
 
 <span class="pl-c"><span class="pl-c">//</span> newurl outputs: http://mywebsite.com</span></pre></div>
-<h3><a id="user-content-replace" class="anchor" href="#replace" aria-hidden="true">rgb(46, 204, 113)</a>Replace</h3>
+<h3><a id="user-content-replace" class="anchor" href="#replace" aria-hidden="true"></a>Replace</h3>
 <p>Replaces current querystrings with new ones.</p>
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> qsm <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>qsm<span class="pl-pds">'</span></span>);
 <span class="pl-k">var</span> newurl <span class="pl-k">=</span> <span class="pl-smi">qsm</span>.<span class="pl-c1">replace</span>(<span class="pl-s"><span class="pl-pds">'</span>http://mywebsite.com?userId=1337&amp;sort=type<span class="pl-pds">'</span></span>, [{ query<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>hasObject<span class="pl-pds">'</span></span>, value<span class="pl-k">:</span> <span class="pl-c1">true</span> }]);
 
 <span class="pl-c"><span class="pl-c">//</span> newurl outputs: http://mywebsite.com?hasObject=true</span></pre></div>
-<h3><a id="user-content-exist" class="anchor" href="#exist" aria-hidden="true">rgb(46, 204, 113)</a>Exist</h3>
+<h3><a id="user-content-exist" class="anchor" href="#exist" aria-hidden="true"></a>Exist</h3>
 <p>Checks if the current url has the querystring.
 <strong>returns boolean</strong></p>
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> qsm <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>qsm<span class="pl-pds">'</span></span>);
 <span class="pl-k">var</span> exists <span class="pl-k">=</span> <span class="pl-smi">qsm</span>.<span class="pl-en">exist</span>(<span class="pl-s"><span class="pl-pds">'</span>http://mywebsite.com?userId=1337&amp;sort=type<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>userId<span class="pl-pds">'</span></span>);
 
 <span class="pl-c"><span class="pl-c">//</span> exists returns true</span></pre></div>
-<h3><a id="user-content-get" class="anchor" href="#get" aria-hidden="true">rgb(46, 204, 113)</a>Get</h3>
+<h3><a id="user-content-get" class="anchor" href="#get" aria-hidden="true"></a>Get</h3>
 <p>Gets the value by key from the url
 <strong>returns either string or null</strong></p>
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> qsm <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>qsm<span class="pl-pds">'</span></span>);
@@ -74,7 +74,7 @@
 
 <span class="pl-c"><span class="pl-c">//</span> userIds returns: "1336,1337,1338"</span>
 <span class="pl-c"><span class="pl-c">//</span> or if it doesnt exist: null</span></pre></div>
-<h3><a id="user-content-objectify" class="anchor" href="#objectify" aria-hidden="true">rgb(46, 204, 113)</a>Objectify</h3>
+<h3><a id="user-content-objectify" class="anchor" href="#objectify" aria-hidden="true"></a>Objectify</h3>
 <p>Transforms the querystring to a javascript object
 <strong>returns object</strong></p>
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> qsm <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>qsm<span class="pl-pds">'</span></span>);
@@ -99,3 +99,4 @@
   
   </body>
 </html>
+
