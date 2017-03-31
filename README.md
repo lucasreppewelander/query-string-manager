@@ -7,14 +7,19 @@ Query String Manager
 
 ## Usage
 
-`qsm.add(string, array)`
-array is an array of objects with `{query: 'query', value: 'value'}`
+`qsm.add(string, array);`
 
 `qsm.remove(string, string)`
 
 `qsm.clear(string);`
 
-`qsm.replace(string, string)`
+`qsm.replace(string, string);`
+
+`qsm.exists(string, string);`
+
+`qsm.get(string, string);`
+
+`qsm.objectify(string);`
 
 ---
 
@@ -67,9 +72,9 @@ Gets the value by key from the url
 __returns either string or null__
 ```javascript
 var qsm = require('qsm');
-var exists = qsm.get('http://mywebsite.com?userId=1336,1337,1338&sort=type', 'userId');
+var userIds = qsm.get('http://mywebsite.com?userId=1336,1337,1338&sort=type', 'userId');
 
-// exists returns: 1336,1337,1338
+// userIds returns: "1336,1337,1338"
 // or if it doesnt exist: null
 ```
 
@@ -78,11 +83,12 @@ Transforms the querystring to a javascript object
 __returns object__
 ```javascript
 var qsm = require('qsm');
-var queryObject = qsm.get('http://mywebsite.com?userId=1336,1337,1338&sort=type');
+var queryObject = qsm.objectify('http://mywebsite.com?userId=1336,1337,1338&sort=type&active=true');
 
 // queryObject returns: 
 // {
 //  userId: [1336,1337,1339],
-//  sort: "type"   
+//  sort: "type",
+//  active: true
 // }
 ```
