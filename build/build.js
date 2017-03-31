@@ -71,7 +71,7 @@ var extract = function extract(url, type) {
         for (var i = 0; i < pars.length; i++) {
             var value = pars[i].split('=')[1];
 
-            if (pars[i].split('=')[1].includes(',')) {
+            if (pars[i].split('=')[1].indexOf(',') >= 0) {
                 var subarr = [];
                 var subarray = pars[i].split('=')[1].split(',');
                 for (var y = 0; y < subarray.length; y++) {
