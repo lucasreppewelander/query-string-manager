@@ -75,7 +75,6 @@ var extract = function extract(url, type) {
                 var subarr = [];
                 var subarray = pars[i].split('=')[1].split(',');
                 for (var y = 0; y < subarray.length; y++) {
-                    console.log(y, subarray[y], parseInt(subarray[y]));
                     subarr.push(parseInt(subarray[y]) ? parseInt(subarray[y]) : subarray[y]);
                 }
 
@@ -119,6 +118,41 @@ var get = function get(url, _parameter) {
     }
     return null;
 };
+var _parseValue = function _parseValue(value) {
+    // Array
+    if (value.indexOf(',') !== -1) {
+        var array = [];
+        var pars = value.split(',');
+        for (var i = pars.length; i-- > 0;) {
+            array[i] = _parseValue(pars[i]);
+        }
+        return array;
+    }
+    // Booleans   
+    if (value === 'true') return true;
+    if (value === 'false') return false;
+    //Number
+    if (!isNaN(parseFloat(value))) return parseFloat(value);
+    //String
+    return value;
+};
+
+var objectify = function objectify(url) {
+    var object = {};
+    var urlparts = url.split('?');
+    if (urlparts.length >= 2) {
+        var pars = urlparts[1].split(/[&;]/g);
+        for (var i = pars.length; i-- > 0;) {
+            var keyValue = pars[i].split(/=(.+)/);
+            if (keyValue[1]) {
+                object[keyValue[0]] = _parseValue(keyValue[1]);
+            } else {
+                object[keyValue[0]] = null;
+            }
+        }
+    }
+    return object;
+};
 var remove = function remove(_url, _parameter) {
     var urlparts = _url.split('?');
     if (urlparts.length >= 2) {
@@ -158,5 +192,6 @@ module.exports = {
     replaceSpecific: replaceSpecific,
     get: get,
     exist: exist,
-    extract: extract
+    extract: extract,
+    objectify: objectify
 };

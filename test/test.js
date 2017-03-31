@@ -70,12 +70,7 @@ describe('Get / Exist & Extract methods', () => {
     it('Extract [REGULAR]', (done) => {
         const url = 'www.url.com?userId=80&pattern=regular&parent=34&project=123,345,567';
         const ret = qsm.extract(url);
-        console.log(ret);
-        // assert.equal
-    });
-
-    it('Extract [PLAIN]', (done) => {
-
+        done();
     });
 });
 
