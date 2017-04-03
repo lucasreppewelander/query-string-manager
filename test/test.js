@@ -112,11 +112,19 @@ describe('Encode and Decode string/objects', function() {
         done();
     });
 
-    it('decode', function(done) {
+    it('decode [OBJECT]', function(done) {
         var obj = {sort: "desc", query: "select name from users where id = 1"};
         var url = 'www.url.com?q=eyJzb3J0IjoiZGVzYyIsInF1ZXJ5Ijoic2VsZWN0IG5hbWUgZnJvbSB1c2VycyB3aGVyZSBpZCA9IDEifQ==';
         var ret = qsm.decode(url, 'q');
         assert.deepEqual(ret, obj);
+        done();
+    })
+
+    it('decode [STRING]', function(done) {
+        var str = 'This is an encoded string';
+        var url = 'www.url.com?q=VGhpcyBpcyBhbiBlbmNvZGVkIHN0cmluZw==';
+        var ret = qsm.decode(url, 'q');
+        assert.deepEqual(ret, str);
         done();
     })
 });

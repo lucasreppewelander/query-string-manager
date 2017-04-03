@@ -58,8 +58,12 @@ var clear = function clear(_url) {
 var decode = function decode(url, parameter) {
     var q = get(url, parameter);
     var y = new Buffer(q, 'base64').toString();
-    var obj = JSON.parse(y);
-    return obj;
+
+    try {
+        return JSON.parse(y);
+    } catch (e) {
+        return y;
+    }
 };
 var encode = function encode(url, obj) {
     var string = JSON.stringify(obj);
