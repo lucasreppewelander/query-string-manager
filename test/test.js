@@ -112,6 +112,13 @@ describe('Encode and Decode string/objects', function() {
         done();
     });
 
+    it('encode [MULTIPLE QUERYSTRINGS]', function(done) {
+        var obj = {sort: "desc", query: "select name from users where id = 1"};
+        var ret = qsm.encode(test.case1, obj)
+        assert.equal(ret, 'www.url.com?userId=1337&q=eyJzb3J0IjoiZGVzYyIsInF1ZXJ5Ijoic2VsZWN0IG5hbWUgZnJvbSB1c2VycyB3aGVyZSBpZCA9IDEifQ==');
+        done();
+    });
+
     it('decode [OBJECT]', function(done) {
         var obj = {sort: "desc", query: "select name from users where id = 1"};
         var url = 'www.url.com?q=eyJzb3J0IjoiZGVzYyIsInF1ZXJ5Ijoic2VsZWN0IG5hbWUgZnJvbSB1c2VycyB3aGVyZSBpZCA9IDEifQ==';
