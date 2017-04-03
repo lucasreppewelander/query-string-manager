@@ -21,6 +21,10 @@ Query String Manager [![Build Status](https://travis-ci.org/lucasreppewelander/q
 
 `qsm.objectify(string);`
 
+`qsm.encode(string, string or object);`
+
+`qsm.decode(string, string);`
+
 ---
 
 ### Add
@@ -91,4 +95,23 @@ var queryObject = qsm.objectify('http://mywebsite.com?userId=1336,1337,1338&sort
 //  sort: "type",
 //  active: true
 // }
+```
+
+### Encode
+Encodes an object or string to base64-string and appends it to the url as Q parameter.
+```javascript
+var qsm = require('qsm);
+var obj = {a: 'QSM', version: 1.2};
+var url = qsm.encode('www.myurl.com', obj);
+// url === 'www.myurl.com?q=e2E6ICdRU00nLCB2ZXJzaW9uOiAxLjJ9'
+
+```
+
+### Decode
+Decodes an query string from the inputted URL, returns either string or object.
+```javascript
+var qsm = require('qsm);
+var url = 'www.myurl.com?q=e2E6ICdRU00nLCB2ZXJzaW9uOiAxLjJ9';
+var ret = qsm.decode(url, 'q');
+// ret === {a: 'QSM', version: 1.2};
 ```
