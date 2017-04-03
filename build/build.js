@@ -1,20 +1,30 @@
 'use strict';
 
 var add = function add(_url, _params) {
-    var retUrl;
+    var retUrl = _url;
     var urlparts = _url.split('?');
-    if (urlparts.length >= 2) {
-        retUrl = _url;
-        for (var i = 0; i < _params.length; i++) {
-            retUrl += _add(_url, _params[i], true);
+    if (_params.constructor === Object) {
+        for (var item in _params) {
+            if (_params.hasOwnProperty(item)) {
+                if (retUrl.indexOf('?') >= 0) {
+                    retUrl += _add(_url, _params[item], item, true);
+                } else {
+                    retUrl += _add(_url, _params[item], item, false);
+                }
+            }
         }
     } else {
-        retUrl = _url;
-        for (var i = 0; i < _params.length; i++) {
-            if (i === 0) {
-                retUrl += _add(_url, _params[i], false);
-            } else {
-                retUrl += _add(_url, _params[i], true);
+        if (urlparts.length >= 2) {
+            for (var i = 0; i < _params.length; i++) {
+                retUrl += _add(_url, _params[i], null, true);
+            }
+        } else {
+            for (var i = 0; i < _params.length; i++) {
+                if (i === 0) {
+                    retUrl += _add(_url, _params[i], null, false);
+                } else {
+                    retUrl += _add(_url, _params[i], null, true);
+                }
             }
         }
     }
@@ -22,15 +32,20 @@ var add = function add(_url, _params) {
     return retUrl;
 };
 
-var _add = function _add(url, param, gotQueryStrings) {
-    var ret = '';
-    if (!gotQueryStrings) {
-        ret += '?' + param.query + '=' + param.value;
-    } else {
-        ret += '&' + param.query + '=' + param.value;
+var _add = function _add(url, param, key, gotQueryStrings) {
+    if (key) {
+        if (!gotQueryStrings) {
+            return '?' + key + '=' + param;
+        }
+
+        return '&' + key + '=' + param;
     }
 
-    return ret;
+    if (!gotQueryStrings) {
+        return '?' + param.query + '=' + param.value;
+    }
+
+    return '&' + param.query + '=' + param.value;
 };
 var clear = function clear(_url) {
     var urlparts = _url.split('?');
@@ -39,6 +54,17 @@ var clear = function clear(_url) {
     }
 
     return _url;
+};
+var decode = function decode(url, parameter) {
+    var q = get(url, parameter);
+    var y = new Buffer(q, 'base64').toString();
+    var obj = JSON.parse(y);
+    return obj;
+};
+var encode = function encode(url, obj) {
+    var string = JSON.stringify(obj);
+    var encoded = new Buffer(string).toString('base64');
+    return add(url, { q: encoded });
 };
 var exist = function exist(url, param) {
     var urlparts = url.split('?');
@@ -166,12 +192,10 @@ var remove = function remove(_url, _parameter) {
         }
 
         if (pars.length > 0) {
-            _url = urlparts[0] + '?' + pars.join('&');
-        } else {
-            _url = urlparts[0];
+            return urlparts[0] + '?' + pars.join('&');
         }
 
-        return _url;
+        return urlparts[0];
     }
     return _url;
 };
@@ -193,5 +217,7 @@ module.exports = {
     get: get,
     exist: exist,
     extract: extract,
-    objectify: objectify
+    objectify: objectify,
+    encode: encode,
+    decode: decode
 };
