@@ -98,7 +98,8 @@ var queryObject = qsm.objectify('http://mywebsite.com?userId=1336,1337,1338&sort
 ```
 
 ### Encode
-Encodes an object or string to base64-string and appends it to the url as Q parameter.
+Encodes an object or string to base64-string and appends it to the url as Q parameter.    
+*this uses qsm.add() method in the background, so it appends it to the Q parameter.*
 ```javascript
 var qsm = require('qsm');
 var obj = {a: 'QSM', version: 1.2};
