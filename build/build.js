@@ -56,7 +56,11 @@ var clear = function clear(_url) {
     return _url;
 };
 var decode = function decode(url, parameter) {
-    var q = get(url, parameter);
+    var param = parameter;
+    if (!parameter) {
+        param = 'q';
+    }
+    var q = get(url, param);
     var y = new Buffer(q, 'base64').toString();
 
     try {
@@ -65,9 +69,18 @@ var decode = function decode(url, parameter) {
         return y;
     }
 };
-var encode = function encode(url, obj) {
+var encode = function encode(url, obj, key) {
     var string = JSON.stringify(obj);
     var encoded = new Buffer(string).toString('base64');
+
+    if (key) {
+        var _temp = {};
+        _temp[key] = encoded;
+        return add(url, _temp);
+    }
+
+    console.log(':KEY', key);
+
     return add(url, { q: encoded });
 };
 var exist = function exist(url, param) {

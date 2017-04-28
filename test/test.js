@@ -65,6 +65,18 @@ describe('Remove / Replace methods', function() {
         done();
     });
 
+    it('Should replace current querystrings witht the one defined', function(done) {
+    	var url = qsm.replace(test.case1, [{ query: 'userId', value: '08' }]);
+    	assert.equal('www.url.com?userId=08', url);
+    	done();
+    });
+
+    it('Should replace current querystrings witht the one defined (OBJECT)', function(done) {
+    	var url = qsm.replace(test.case1, { userId: 1337 });
+    	assert.equal('www.url.com?userId=1337', url);
+    	done();
+    });
+
     it('Should replace specific query when that is the only query present', function(done) {
         var url = qsm.replaceSpecific(test.case1, [{ query: 'userId', value: '08' }], 'userId');
         assert.equal('www.url.com?userId=08', url);
@@ -112,6 +124,13 @@ describe('Encode and Decode string/objects', function() {
         done();
     });
 
+    it('encode with specified key', function(done) {
+        var obj = {sort: "desc", query: "select name from users where id = 1"};
+        var ret = qsm.encode(test.clean, obj, 'lucas')
+        assert.equal(ret, 'www.url.com?lucas=eyJzb3J0IjoiZGVzYyIsInF1ZXJ5Ijoic2VsZWN0IG5hbWUgZnJvbSB1c2VycyB3aGVyZSBpZCA9IDEifQ==');
+        done();
+    });
+
     it('encode [MULTIPLE QUERYSTRINGS]', function(done) {
         var obj = {sort: "desc", query: "select name from users where id = 1"};
         var ret = qsm.encode(test.case1, obj)
@@ -122,7 +141,15 @@ describe('Encode and Decode string/objects', function() {
     it('decode [OBJECT]', function(done) {
         var obj = {sort: "desc", query: "select name from users where id = 1"};
         var url = 'www.url.com?q=eyJzb3J0IjoiZGVzYyIsInF1ZXJ5Ijoic2VsZWN0IG5hbWUgZnJvbSB1c2VycyB3aGVyZSBpZCA9IDEifQ==';
-        var ret = qsm.decode(url, 'q');
+        var ret = qsm.decode(url);
+        assert.deepEqual(ret, obj);
+        done();
+    })
+
+    it('decode custom key [OBJECT]', function(done) {
+        var obj = {sort: "desc", query: "select name from users where id = 1"};
+        var url = 'www.url.com?lucas=eyJzb3J0IjoiZGVzYyIsInF1ZXJ5Ijoic2VsZWN0IG5hbWUgZnJvbSB1c2VycyB3aGVyZSBpZCA9IDEifQ==';
+        var ret = qsm.decode(url, 'lucas');
         assert.deepEqual(ret, obj);
         done();
     })
@@ -130,7 +157,7 @@ describe('Encode and Decode string/objects', function() {
     it('decode [STRING]', function(done) {
         var str = 'This is an encoded string';
         var url = 'www.url.com?q=VGhpcyBpcyBhbiBlbmNvZGVkIHN0cmluZw==';
-        var ret = qsm.decode(url, 'q');
+        var ret = qsm.decode(url);
         assert.deepEqual(ret, str);
         done();
     })
