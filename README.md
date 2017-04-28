@@ -14,21 +14,26 @@ var qsm = require('qsm');
 ### Add
 Appends querystring to the url.
 ```javascript
-var newurl = qsm.add('http://mywebsite.com', [{ query: 'userId', value: 1337 }]);
+var url = 'http://mywebsite.com';
+var newUrl = qsm.add(url, [{ query: 'userId', value: 1337 }]);
+> OR
+var newUrl = qsm.add(url, { userId: 1337 });
 
-// newurl outputs: http://mywebsite.com?userId=1337
+// newUrl outputs: http://mywebsite.com?userId=1337
 ```
 ### Remove
 Removes any querystring by key
 ```javascript
-var newurl = qsm.remove('http://mywebsite.com?userId=1337&sort=type', 'userId');
+var url = 'http://mywebsite.com?userId=1337&sort=type';
+var newurl = qsm.remove(url, 'userId');
 
 // newurl outputs: http://mywebsite.com?sort=type
 ```
 ### Clear
 Clears all querystrings from the url
 ```javascript
-var newurl = qsm.clear('http://mywebsite.com?userId=1337&sort=type');
+var url = 'http://mywebsite.com?userId=1337&sort=type';
+var newurl = qsm.clear(url);
 
 // newurl outputs: http://mywebsite.com
 ```
@@ -36,7 +41,10 @@ var newurl = qsm.clear('http://mywebsite.com?userId=1337&sort=type');
 ### Replace
 Replaces current querystrings with new ones.
 ```javascript
-var newurl = qsm.replace('http://mywebsite.com?userId=1337&sort=type', [{ query: 'hasObject', value: true }]);
+var url = 'http://mywebsite.com?userId=1337&sort=type';
+var newurl = qsm.replace(url, [{ query: 'hasObject', value: true }]);
+> OR
+var newurl = qsm.replace(url, { hasObject: true });
 
 // newurl outputs: http://mywebsite.com?hasObject=true
 ```
