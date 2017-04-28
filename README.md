@@ -92,10 +92,26 @@ var url = qsm.encode('www.myurl.com', obj);
 
 ```
 
+#### Encode with specific parameter
+```javascript
+var obj = {a: 'QSM', version: 1.2};
+var url = qsm.encode('www.myurl.com', obj, 'appVersion');
+// url === 'www.myurl.com?appVersion=e2E6ICdRU00nLCB2ZXJzaW9uOiAxLjJ9'
+
+```
+
 ### Decode
 Decodes an query string from the inputted URL, returns either string or object.
+*Decodes by default the Q parameter*
 ```javascript
 var url = 'www.myurl.com?q=e2E6ICdRU00nLCB2ZXJzaW9uOiAxLjJ9';
-var ret = qsm.decode(url, 'q');
+var ret = qsm.decode(url);
+// ret === {a: 'QSM', version: 1.2};
+```
+
+#### Decode with specific parameter
+```javascript
+var url = 'www.myurl.com?appVersion=e2E6ICdRU00nLCB2ZXJzaW9uOiAxLjJ9';
+var ret = qsm.decode(url, 'appVersion');
 // ret === {a: 'QSM', version: 1.2};
 ```
