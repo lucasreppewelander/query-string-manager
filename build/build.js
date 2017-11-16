@@ -4,27 +4,25 @@ var add = function add(_url, _params) {
     var retUrl = _url;
     var urlparts = _url.split('?');
     if (_params.constructor === Object) {
-        for (var item in _params) {
-            if (_params.hasOwnProperty(item)) {
-                if (retUrl.indexOf('?') >= 0) {
-                    retUrl += _add(_url, _params[item], item, true);
+        var __params = sort(_params);
+        for (var item in __params) {
+            if (__params.hasOwnProperty(item)) {
+                if (exist(retUrl, item)) {
+                    retUrl = replaceSpecific(_url, __params, item);
                 } else {
-                    retUrl += _add(_url, _params[item], item, false);
+                    retUrl += _add(_url, __params[item], item, retUrl.indexOf('?') <= 0);
                 }
             }
         }
     } else {
+        console.warn('You are using a feature of QSM 2.0 that will get deprecated in next major release. Please use the object variant instead. More info at https://npmjs.com/package/qsm');
         if (urlparts.length >= 2) {
             for (var i = 0; i < _params.length; i++) {
-                retUrl += _add(_url, _params[i], null, true);
+                retUrl += _add(_url, _params[i], null, false);
             }
         } else {
             for (var i = 0; i < _params.length; i++) {
-                if (i === 0) {
-                    retUrl += _add(_url, _params[i], null, false);
-                } else {
-                    retUrl += _add(_url, _params[i], null, true);
-                }
+                retUrl += _add(_url, _params[i], null, i < 1);
             }
         }
     }
@@ -32,16 +30,16 @@ var add = function add(_url, _params) {
     return retUrl;
 };
 
-var _add = function _add(url, param, key, gotQueryStrings) {
+var _add = function _add(url, param, key, isFirst) {
     if (key) {
-        if (!gotQueryStrings) {
+        if (isFirst) {
             return '?' + key + '=' + param;
         }
 
         return '&' + key + '=' + param;
     }
 
-    if (!gotQueryStrings) {
+    if (isFirst) {
         return '?' + param.query + '=' + param.value;
     }
 
@@ -78,8 +76,6 @@ var encode = function encode(url, obj, key) {
         _temp[key] = encoded;
         return add(url, _temp);
     }
-
-    console.log(':KEY', key);
 
     return add(url, { q: encoded });
 };
@@ -225,6 +221,23 @@ var replaceSpecific = function replaceSpecific(url, parameter, replacer) {
     var _url = add(url, parameter);
     return _url;
 };
+var sort = function sort(obj) {
+    var newObj = {};
+    var keys = Object.keys(obj);
+
+    var sortedKeys = keys.sort(function (a, b) {
+        if (a > b) return 1;
+        if (a < b) return -1;
+        return 0;
+    });
+
+    sortedKeys.forEach(function (key) {
+        newObj[key] = obj[key];
+    });
+
+    return newObj;
+};
+
 module.exports = {
     remove: remove,
     add: add,

@@ -15,8 +15,6 @@ var qsm = require('qsm');
 Appends querystring to the url.
 ```javascript
 var url = 'http://mywebsite.com';
-var newUrl = qsm.add(url, [{ query: 'userId', value: 1337 }]);
-> OR
 var newUrl = qsm.add(url, { userId: 1337 });
 
 // newUrl outputs: http://mywebsite.com?userId=1337
@@ -42,8 +40,6 @@ var newurl = qsm.clear(url);
 Replaces current querystrings with new ones.
 ```javascript
 var url = 'http://mywebsite.com?userId=1337&sort=type';
-var newurl = qsm.replace(url, [{ query: 'hasObject', value: true }]);
-> OR
 var newurl = qsm.replace(url, { hasObject: true });
 
 // newurl outputs: http://mywebsite.com?hasObject=true

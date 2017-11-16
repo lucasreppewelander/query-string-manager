@@ -5,7 +5,8 @@ var test = {
     clean: 'www.url.com',
     case1: 'www.url.com?userId=1337',
     case2: 'www.url.com?gender=female&userId=1337',
-    case3: 'www.url.com?gender=female'
+	case3: 'www.url.com?gender=female',
+	case4: 'www.url.com?gender=male&userId=007'
 }
 
 describe('Add methods', function() {
@@ -19,7 +20,7 @@ describe('Add methods', function() {
         var url = qsm.add(test.case3, [{ query: 'userId', value: '1337' }]);
         assert.equal(test.case2, url);
         done();
-    });
+	});
 
     it('Should add a querystring with comma separated values', function(done) {
         var url = qsm.add(test.clean, [{ query: 'userId', value: ['1337', '666', '11'] }]);
@@ -36,6 +37,18 @@ describe('Add methods', function() {
     it('Add method used with pure object [SEVERAL]', function(done) {
         var url = qsm.add(test.clean, { gender: 'female', userId: 1337 });
         assert.equal(test.case2, url);
+        done();
+	});
+	
+	it('Add same object but different index of keys should return the same URL', function(done) {
+        var url = qsm.add(test.clean, { userId: 1337, gender: 'female' });
+        assert.equal(test.case2, url);
+        done();
+	});
+	
+	it('Same keys but different values should update the URL', function(done) {
+        var url = qsm.add(test.case1, { userId: '007', gender: 'male' });
+        assert.equal(test.case4, url);
         done();
     });
 
