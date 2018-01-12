@@ -238,7 +238,7 @@ var sort = function sort(obj) {
     return newObj;
 };
 
-typeof window !== 'undefined' ? window.qsm : module.exports = {
+module.exports = {
     remove: remove,
     add: add,
     clear: clear,
