@@ -1,6 +1,6 @@
 {
   "name": "qsm",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "a simple tool that allows you to remove any querystring from the url",
   "main": "qsm.js",
   "scripts": {

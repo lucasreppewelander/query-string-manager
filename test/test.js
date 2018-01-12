@@ -1,6 +1,8 @@
 var assert = require('assert');
 var qsm = require('../qsm.js');
 
+console.log(qsm);
+
 var test = {
     clean: 'www.url.com',
     case1: 'www.url.com?userId=1337',
