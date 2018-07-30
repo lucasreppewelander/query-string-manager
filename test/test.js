@@ -203,6 +203,14 @@ describe('Objectify method',function() {
         done();
     });
 
+    it('Should not parse strings as Infinity', function(done) {
+        var url = 'http://www.url.com/?a=599e845b3622f14ee103b0fb';
+        var ret = qsm.objectify(url);
+        var obj = {a:'599e845b3622f14ee103b0fb'};
+        assert.deepEqual(ret,obj);
+        done();
+    });
+
     it('Check parsed object mixed', function(done) {
         var url = 'http://www.url.com/?a=1.337,1337,true,leet&b=false';
         var ret = qsm.objectify(url);

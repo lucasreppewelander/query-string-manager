@@ -171,7 +171,7 @@ var _parseValue = function _parseValue(value) {
     if (value === 'true') return true;
     if (value === 'false') return false;
     //Number
-    if (!isNaN(parseFloat(value))) return parseFloat(value);
+    if (isFinite(parseFloat(value))) return parseFloat(value);
     //String
     return value;
 };
