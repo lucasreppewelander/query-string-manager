@@ -217,7 +217,28 @@ describe('Objectify method',function() {
         var obj = {a: [1.337,1337,true,'leet'],b:false};
         assert.deepEqual(ret,obj);
         done();
-    });
+	});
+	
+	it('Check utm campaigns', function(done) {
+		var url = 'http://www.url.com?utm_campaign=2020-02';
+		var ret = qsm.objectify(url);
+		var obj = {utm_campaign: '2020-02'};
+		assert.deepEqual(ret,obj);
+
+		var url = 'http://www.url.com?utm_campaign=2020-2';
+		var ret = qsm.objectify(url);
+		var obj = {utm_campaign: '2020-2'};
+		assert.deepEqual(ret,obj);
+		done();
+	});
+
+	it('Check that negative values are parsed as numbers', function(done) {
+		var url = 'http://www.url.com?utm_campaign=2020-02&page=-1';
+		var ret = qsm.objectify(url);
+		var obj = {utm_campaign: '2020-02', page: -1};
+		assert.deepEqual(ret,obj);
+		done();
+	});
 
     it('Check parsed object empty querystring', function(done) {
         var url = 'http://www.url.com/';

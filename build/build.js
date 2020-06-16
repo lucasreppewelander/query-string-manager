@@ -170,6 +170,9 @@ var _parseValue = function _parseValue(value) {
     // Booleans   
     if (value === 'true') return true;
     if (value === 'false') return false;
+
+    //special string eg: '2020-02'
+    if (value.indexOf('-') > 0) return value;
     //Number
     if (isFinite(parseFloat(value))) return parseFloat(value);
     //String
@@ -179,6 +182,7 @@ var _parseValue = function _parseValue(value) {
 var objectify = function objectify(url) {
     var object = {};
     var urlparts = url.split('?');
+
     if (urlparts.length >= 2) {
         var pars = urlparts[1].split(/[&;]/g);
         for (var i = pars.length; i-- > 0;) {
