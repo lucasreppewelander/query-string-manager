@@ -6,7 +6,6 @@ const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const rename = require("gulp-rename");
 const clean = require("gulp-clean");
-const addsrc = require('gulp-add-src');
 const insert = require('gulp-insert');
 
 gulp.task('build', ['clean'], (done) => {
