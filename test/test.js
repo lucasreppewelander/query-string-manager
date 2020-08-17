@@ -201,6 +201,14 @@ describe('Objectify method',function() {
         var obj = {a:1.337, b:1337};
         assert.deepEqual(ret,obj);
         done();
+	});
+	
+	it('Check parsed object uuid and numbers', function(done) {
+        var url = 'http://www.url.com/?a=1337&b=0adad40336ab45b78635bf8fc8b4a824';
+        var ret = qsm.objectify(url);
+        var obj = {a:1337, b:'0adad40336ab45b78635bf8fc8b4a824'};
+        assert.deepEqual(ret,obj);
+        done();
     });
 
     it('Should not parse strings as Infinity', function(done) {
