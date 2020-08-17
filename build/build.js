@@ -174,7 +174,7 @@ var _parseValue = function _parseValue(value) {
     //special string eg: '2020-02'
     if (value.indexOf('-') > 0) return value;
     //Number
-    if (isFinite(parseFloat(value))) return parseFloat(value);
+    if (value.match(/^\d*\.?\d*$/)) return parseFloat(value);
     //String
     return value;
 };
